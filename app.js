@@ -3,12 +3,11 @@ require('dotenv').config();
 const mongoose = require('mongoose')
 const morgan   = require('morgan')
 const bodyparser = require('body-parser')
-const { Db } = require('mongodb')
-const { connected } = require('process')
 const cors = require('cors')
 const authroute = require('./routes/userRoutes')
-mongoose.connect('mongodb://localhost:27017/virgobackend')
 
+// Connect to MongoDB using the URI from the .env file
+mongoose.connect(process.env.MONGO_URI)
 
 const db = mongoose.connection
 db.on('error',(err)=>{
@@ -18,7 +17,7 @@ db.once('open',()=>{
     console.log('database is connected')
 })
 
-const app =express()
+const app = express()
 app.use(morgan('dev'))
 app.use(bodyparser.urlencoded({extended:true}))
 app.use(bodyparser.json())
@@ -39,4 +38,4 @@ app.use(cors({
   }
 }));
 
-app.use('/',authroute)
+app.use('/', authroute)
