@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 5001
 app.listen(PORT,()=>{
     console.log(`server is running ${PORT}`)
 })
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = ['http://localhost:5173'];
 
 app.use(cors({
   origin: function (origin, callback) {

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const authController = require('../controller/authController');
 
 // 🟢 **PRODUCT**
 const { 
@@ -76,5 +76,7 @@ router.put('/updatecart/:userId/:cartItemId', updateCartItemQuantity);
 router.delete('/removecart/:cartItemId',  removeFromCart);  
 router.delete('/clearcart/:userId', clearCartByUser);  
 
+
+router.post('/user', authController.saveOrRetrieveUser);
 
 module.exports = router;
